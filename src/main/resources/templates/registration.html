@@ -5,9 +5,6 @@
     <title>Yong Fighter Shop </title>
 </head>
 <body>
-<div th:if="${{message}}" style="color: red">
-    User exists!
-</div>
 <form th:action="@{/registration}" method="post">
     <div><label> User Name : <input type="text" name="username"/> </label></div>
     <div><label> E-mail : <input type="email" name="email"/> </label></div>
