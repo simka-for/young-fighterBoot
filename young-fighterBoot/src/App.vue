@@ -6,31 +6,29 @@
       <v-btn icon href="/admin">
         <v-icon>verified_user</v-icon>
       </v-btn>
+      <v-btn icon href="/cart">
+        <v-icon>shopping_cart</v-icon>{{ CART.length }}
+      </v-btn>
     </v-app-bar>
-    <br>
     <v-content>
       <v-container>
-        <router-view :products="products"></router-view>
+        <router-view></router-view>
       </v-container>
     </v-content>
   </v-app>
+
 </template>
 
 <script>
-  const axios = require('axios').default;
+  import {mapGetters} from 'vuex'
 
   export default {
-    data() {
-      return {
-        products: []
-      }
+    name: 'app',
+    computed:{
+      ...mapGetters([
+        'CART'
+      ])
     },
-    mounted() {
-      axios
-              .get('http://localhost:9000/')
-              .then(response => (
-                      this.products = response.data));
-    }
   }
 </script>
 

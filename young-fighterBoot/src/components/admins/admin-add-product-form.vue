@@ -10,20 +10,18 @@
 </template>
 
 <script>
-    document.oninput = function() {
-        const input = document.querySelector('.input-0');
-        input.value = input.value.replace (/\D/g, '');
-    }
     function getIndex(list, id) {
-    for (let i = 0; i < list.length; i++ ) {
-        if (list[i].id === id) {
-            return i;
+        for (let i = 0; i < list.length; i++ ) {
+            if (list[i].id === id) {
+                return i;
+            }
         }
-    }
-    return -1;
+        return -1;
     }
     const axios = require('axios').default;
+
     export default {
+        name: "v-admin-add-product-form",
         props: ['products', "productAttr"],
         data() {
             return {
@@ -70,6 +68,6 @@
     }
 </script>
 
-<style>
+<style scoped>
 
 </style>

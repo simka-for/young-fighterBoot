@@ -1,16 +1,83 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ProductList from '../components/Product/ProductList.vue'
-import AdminPage from "../components/adminPanel/AdminPage.vue";
+import AppVue from '../App.vue'
+import vCatalog from '../view/catalog.vue'
+import AdminPage from "../view/admin-page.vue"
+import AdminProductPage from "../components/admins/admin-product-view.vue"
+import vCart from "../view/cart.vue"
+import userContainer from "../view/user-container.vue"
+import adminContainer from "../view/admin-container.vue"
 
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/', component: ProductList},
-    { path: '/admin', component: AdminPage},
-    { path: '*', component: ProductList},
-
-
+    {
+        path: '/',
+        component: AppVue,
+        name: "App",
+        children: [
+            {
+                path: '/',
+                name: 'home',
+                redirect: {
+                    name: 'catalog'
+                },
+            },
+            {
+                path: "/user-container",
+                component: userContainer,
+                name: "user-container",
+                redirect: "catalog"
+            },
+            {
+                path: "/admin-container",
+                component: adminContainer,
+                name: "admin-container",
+                redirect: "admin-main"
+            }
+        ]
+    },
+    {
+        path: "/user-container",
+        component: userContainer,
+        name: "user-container",
+        children: [
+            {
+                path: '/catalog',
+                name: 'catalog',
+                component: vCatalog,
+            },
+            {
+                path: '/cart',
+                name: 'cart',
+                component: vCart
+            }
+        ]
+    },
+    {
+        path: "/admin-container",
+        component: adminContainer,
+        name: "admin-container",
+        children: [
+            {
+                path: "/admin",
+                component: AdminPage,
+            }
+        ]
+    },
+    {
+        path: "/admin",
+        name: "admin-main",
+        component: AdminPage,
+        children: [
+            {
+                path: "/admin/products",
+                name: "adminProductView",
+                component: AdminProductPage
+            }
+        ]
+    },
+    { path: '*', component: vCatalog},
 ]
 
 export default new VueRouter({

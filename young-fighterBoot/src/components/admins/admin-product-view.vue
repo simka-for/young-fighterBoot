@@ -1,33 +1,37 @@
 <template>
     <v-layout align-center-around justify-start row>
-        <ProductForm :products="products" :productAttr="product" />
-        <br/>
-        <product-row v-for="product in products"
-                     :key="product.id"
-                     :product="product"
-                     :products="products"
-                     :editProduct="editProduct"
-                     :deleteProduct="deleteProduct"/>
-
+        <admin-add-product-form :products="products" :productAttr="product"/>
+        <admin-product-list id="margin"
+                v-for="product in products"
+                :key="product.id"
+                :product="product"
+                :products="products"
+                :editProduct="editProduct"
+                :deleteProduct="deleteProduct"
+        />
     </v-layout>
 </template>
 
 <script>
-    import ProductRow from './ProductRow.vue'
-    import ProductForm from './ProductForm.vue'
     const axios = require('axios').default;
+    import adminProductList from './admin-product-list.vue'
+    import adminAddProductForm from './admin-add-product-form.vue'
+
     export default {
+        name: "v-admin-product-page",
         components: {
-            ProductRow,
-            ProductForm,
+          adminAddProductForm,
+          adminProductList
         },
-        data () {
+        data() {
             return {
                 product: null,
                 products: []
             }
         },
         mounted() {
+            // this.$store.dispatch()
+            // this.$store.getters.CART
             axios
                 .get('http://localhost:9000/')
                 .then(response => (
@@ -48,5 +52,9 @@
 </script>
 
 <style>
-
+    #margin{
+        margin-bottom: 30px;
+        margin-left: 30px;
+        margin-top: 20px;
+    }
 </style>

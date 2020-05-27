@@ -16,11 +16,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/")
 @CrossOrigin
-public class DefaultController {
+public class MainController {
 
     private final ProductService productService;
 
-    public DefaultController(ProductService productService) {
+    public MainController(ProductService productService) {
         this.productService = productService;
     }
 
