@@ -24,56 +24,41 @@ const routes = [
                 },
             },
             {
-                path: "/user-container",
+                path: "user-container",
                 component: userContainer,
                 name: "user-container",
-                redirect: "catalog"
+                children:[
+                    {
+                        path: 'catalog',
+                        name: 'catalog',
+                        component: vCatalog,
+                    },
+                    {
+                        path: 'cart',
+                        name: 'cart',
+                        component: vCart
+                    }
+                ]
             },
             {
-                path: "/admin-container",
+                path: "admin-container",
                 component: adminContainer,
                 name: "admin-container",
-                redirect: "admin-main"
-            }
-        ]
-    },
-    {
-        path: "/user-container",
-        component: userContainer,
-        name: "user-container",
-        children: [
-            {
-                path: '/catalog',
-                name: 'catalog',
-                component: vCatalog,
-            },
-            {
-                path: '/cart',
-                name: 'cart',
-                component: vCart
-            }
-        ]
-    },
-    {
-        path: "/admin-container",
-        component: adminContainer,
-        name: "admin-container",
-        children: [
-            {
-                path: "/admin",
-                component: AdminPage,
-            }
-        ]
-    },
-    {
-        path: "/admin",
-        name: "admin-main",
-        component: AdminPage,
-        children: [
-            {
-                path: "/admin/products",
-                name: "adminProductView",
-                component: AdminProductPage
+                children: [
+                    {
+                        path: "admin",
+                        name: "admin",
+                        component: AdminPage,
+                        children: [
+                            {
+                                path: "admin/products",
+                                name: "adminProductView",
+                                component: AdminProductPage
+                            }
+                        ]
+                    }
+                ]
+
             }
         ]
     },

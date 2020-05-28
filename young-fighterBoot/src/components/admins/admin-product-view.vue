@@ -30,8 +30,6 @@
             }
         },
         mounted() {
-            // this.$store.dispatch()
-            // this.$store.getters.CART
             axios
                 .get('http://localhost:9000/')
                 .then(response => (

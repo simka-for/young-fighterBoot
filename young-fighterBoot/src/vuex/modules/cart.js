@@ -2,8 +2,11 @@ const state = {
     cart: []
 }
 const getters = {
-    CART(state){
+    getCart(state){
         return state.cart;
+    },
+    getCartLength(state){
+        return state.cart.length
     }
 }
 const mutations = {
